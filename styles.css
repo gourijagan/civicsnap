@@ -11,6 +11,10 @@
   --shadow: 0 12px 28px rgba(15, 44, 72, 0.08);
   --border: #dce6ef;
 }
+/* ✏️ RESPONSIVE: Fluid font sizing across all screen sizes */
+html {
+  font-size: clamp(14px, 2.5vw, 16px);
+}
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -24,7 +28,8 @@ button, input, select, textarea {
 button {
   border: 0;
   border-radius: 10px;
-  padding: 10px 16px;
+  /* ✏️ RESPONSIVE: Dynamic button padding */
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);
   cursor: pointer;
   background: var(--primary);
   color: white;
@@ -53,7 +58,8 @@ textarea { min-height: 110px; resize: vertical; }
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  /* ✏️ RESPONSIVE: Dynamic auth shell padding */
+  padding: clamp(16px, 4vw, 24px);
 }
 .auth-card, .panel, .card {
   background: var(--card);
@@ -68,11 +74,13 @@ textarea { min-height: 110px; resize: vertical; }
   overflow: hidden;
 }
 .hero {
-  padding: 38px;
+  /* ✏️ RESPONSIVE: Dynamic hero padding with clamp() */
+  padding: clamp(16px, 5vw, 38px);
   background: linear-gradient(135deg, #0f5d9d 0%, #1f9d73 100%);
   color: white;
 }
-.hero h1 { margin: 0 0 12px; font-size: 2.2rem; }
+/* ✏️ RESPONSIVE: Fluid heading sizes */
+.hero h1 { margin: 0 0 12px; font-size: clamp(1.4rem, 5vw, 2.2rem); }
 .hero p { line-height: 1.6; opacity: 0.95; }
 .stats {
   display: grid;
@@ -85,7 +93,10 @@ textarea { min-height: 110px; resize: vertical; }
   border-radius: 14px;
   background: rgba(255,255,255,0.12);
 }
-.forms { padding: 28px; }
+.forms { 
+  /* ✏️ RESPONSIVE: Dynamic forms padding */
+  padding: clamp(16px, 4vw, 28px); 
+}
 .tabs {
   display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap;
 }
@@ -131,7 +142,8 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .menu button.active, .menu button:hover { background: rgba(255,255,255,0.18); }
 .main {
-  padding: 24px;
+  /* ✏️ RESPONSIVE: Dynamic main padding */
+  padding: clamp(16px, 3vw, 24px);
 }
 .topbar {
   display: flex;
@@ -201,7 +213,8 @@ textarea { min-height: 110px; resize: vertical; }
   color: var(--muted);
 }
 .kv { display: grid; grid-template-columns: 160px 1fr; gap: 8px 12px; }
-.filters { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:12px; }
+/* ✏️ RESPONSIVE: Dynamic filter grid */
+.filters { display:grid; grid-template-columns: clamp(1fr, 100%, 2fr) repeat(3, 1fr); gap:12px; }
 .footer-note {
   margin-top: 18px;
   color: var(--muted);
@@ -227,9 +240,44 @@ textarea { min-height: 110px; resize: vertical; }
   background: var(--primary);
   position: absolute; left: -18px; top: 6px;
 }
+/* ✏️ RESPONSIVE: Tablet breakpoint (900px) */
 @media (max-width: 900px) {
   .auth-card { grid-template-columns: 1fr; }
   .layout { grid-template-columns: 1fr; }
   .sidebar { position: sticky; top:0; z-index:2; }
-  .grid.cols-4, .grid.cols-3, .grid.cols-2, .filters, .form-grid { grid-template-columns: 1fr; }
+  .grid.cols-4, .grid.cols-3, .grid.cols-2, .form-grid { grid-template-columns: repeat(2, 1fr); }
+  .filters { grid-template-columns: 1fr 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ✏️ RESPONSIVE: Small tablet/large mobile breakpoint (768px) */
+@media (max-width: 768px) {
+  html { font-size: clamp(13px, 2.2vw, 15px); }
+  .brand { font-size: 1.3rem; }
+  .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+  .filters { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .section-title { flex-direction: column; align-items: flex-start; }
+  .kv { grid-template-columns: 1fr; }
+}
+
+/* ✏️ RESPONSIVE: Mobile breakpoint (480px) */
+@media (max-width: 480px) {
+  html { font-size: 12px; }
+  .hero h1 { font-size: 1.3rem; }
+  .hero p { font-size: 0.9rem; }
+  .sidebar { padding: 16px 12px; }
+  .brand { font-size: 1.1rem; margin-bottom: 16px; }
+  .menu button { padding: clamp(8px, 2vw, 10px) 8px; margin-bottom: 8px; }
+  .main { padding: 12px; }
+  .topbar { flex-direction: column; align-items: stretch; }
+  .top-actions { flex-direction: column; }
+  .top-actions button { width: 100%; }
+  .panel { padding: 12px; }
+  .item { padding: 12px; }
+  .tabs { gap: 6px; }
+  button { padding: 8px 12px; font-size: 0.9rem; }
+  .metric .value { font-size: 1.4rem; }
+  .image-preview { max-width: 100px; max-height: 80px; }
+  .section-title { gap: 8px; }
 }

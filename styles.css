@@ -1,8 +1,8 @@
 :root {
   --bg: #eef3f8;
   --card: #ffffff;
-  --text: #1c2b36;
-  --muted: #647787;
+  --text: #18252e;
+  --muted: #212a31;
   --primary: #1167b1;
   --primary-2: #0b4d86;
   --accent: #1f9d73;
@@ -192,7 +192,7 @@ textarea { min-height: 110px; resize: vertical; }
 .badge.inprogress { background: #fff6d8; color: #7b6200; }
 .badge.resolved { background: #e8faef; color: #127c43; }
 .badge.delayed, .badge.escalated { background: #fff0ef; color: #a64038; }
-.badge.rejected { background: #f1f1f1; color: #606060; }
+.badge.rejected { background: #f1f1f1; color: #080808; }
 .empty {
   padding: 20px;
   border: 1px dashed var(--border);
